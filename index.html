@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com Groq</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> <!-- Bulma CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- CSS personalizado -->
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <div class="box chat-container">
+                <h1 class="title has-text-centered">Chat com Groq</h1>
+                <div class="chat-box" id="chatBox">
+                    <!-- Mensagens do chat serão adicionadas aqui -->
+                    <div class="message bot-message">
+                        <div class="message-body">
+                            Olá! Como posso ajudar você hoje?
+                        </div>
+                    </div>
+                </div>
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input class="input" type="text" id="userInput" placeholder="Digite sua mensagem...">
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary" onclick="sendMessage()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            const chatBox = document.getElementById('chatBox');
+
+            if (!userInput.trim()) return; // Não envia mensagens vazias
+
+            // Adiciona a mensagem do usuário ao chat
+            chatBox.innerHTML += `
+                <div class="message user-message">
+                    <div class="message-body">
+                        ${userInput}
+                    </div>
+                </div>
+            `;
+
+            // Limpa o campo de entrada
+            document.getElementById('userInput').value = '';
+
+            try {
+                // Faz a requisição para o back-end
+                const response = await fetch('http://localhost:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userInput }),
+                });
+                const data = await response.json();
+
+                // Adiciona a resposta do bot ao chat
+                chatBox.innerHTML += `
+                    <div class="message bot-message">
+                        <div class="message-body">
+                            ${data.response}
+                        </div>
+                    </div>
+                `;
+
+                // Rola a tela para a última mensagem
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+                console.error("Erro ao enviar mensagem:", error);
+                chatBox.innerHTML += `
+                    <div class="message error-message">
+                        <div class="message-body">
+                            Erro ao enviar mensagem. Tente novamente.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

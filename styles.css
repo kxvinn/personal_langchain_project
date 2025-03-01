@@ -1,0 +1,91 @@
+/* Cores da paleta */
+:root {
+    --color-light: #F5E9E9; /* Fundo claro */
+    --color-dark: #4B0F0E; /* Texto escuro */
+    --color-primary: #752A29; /* Cor primária */
+    --color-secondary: #A83230; /* Cor secundária */
+    --color-accent: #CA8B8A; /* Destaque */
+    --color-error: #330201; /* Erro */
+}
+
+body {
+    background-image: url('bg.jpg'); /* Imagem de fundo */
+    background-size: cover; /* Cobrir toda a tela */
+    background-position: center; /* Centralizar a imagem */
+    background-repeat: no-repeat; /* Não repetir a imagem */
+}
+
+/* Estilo para o container do chat */
+.chat-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid var(--color-primary);
+    border-radius: 10px;
+    background-color: var(--color-light);
+}
+
+/* Estilo para a caixa de mensagens */
+.chat-box {
+    height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Estilo para as mensagens */
+.message {
+    margin-bottom: 10px;
+}
+
+.message-body {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilo para a mensagem do usuário */
+.user-message .message-body {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+}
+
+/* Estilo para a mensagem do bot */
+.bot-message .message-body {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* Estilo para mensagens de erro */
+.error-message .message-body {
+    background-color: var(--color-error);
+    color: #fff;
+}
+
+/* Estilo para o botão */
+.button.is-primary {
+    background-color: var(--color-secondary);
+    color: #fff;
+    border: none;
+}
+
+.button.is-primary:hover {
+    background-color: var(--color-primary);
+}
+
+/* Estilo para o campo de entrada */
+.input {
+    border: 1px solid var(--color-primary);
+}
+
+.input:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 0.125em rgba(167, 50, 48, 0.25);
+}
+
+/* Estilo para o título */
+.title {
+    color: var(--color-dark);
+}
