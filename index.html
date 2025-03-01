@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat com Groq</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> <!-- Bulma CSS -->
-    <link rel="stylesheet" href="styles.css"> <!-- CSS personalizado -->
+    <link rel="stylesheet" href="styles.css"> <!-- custom css -->
 </head>
 <body>
     <section class="section">
@@ -13,7 +13,7 @@
             <div class="box chat-container">
                 <h1 class="title has-text-centered">Chat com Groq</h1>
                 <div class="chat-box" id="chatBox">
-                    <!-- Mensagens do chat serão adicionadas aqui -->
+                    <!-- chat messages will be added here -->
                     <div class="message bot-message">
                         <div class="message-body">
                             Olá! Como posso ajudar você hoje?
@@ -37,9 +37,9 @@
             const userInput = document.getElementById('userInput').value;
             const chatBox = document.getElementById('chatBox');
 
-            if (!userInput.trim()) return; // Não envia mensagens vazias
+            if (!userInput.trim()) return; // do not send empty messages
 
-            // Adiciona a mensagem do usuário ao chat
+            // adds user's message to the chat
             chatBox.innerHTML += `
                 <div class="message user-message">
                     <div class="message-body">
@@ -48,11 +48,11 @@
                 </div>
             `;
 
-            // Limpa o campo de entrada
+            // clears input field
             document.getElementById('userInput').value = '';
 
             try {
-                // Faz a requisição para o back-end
+                // backend request
                 const response = await fetch('http://localhost:5000/chat', {
                     method: 'POST',
                     headers: {
@@ -62,7 +62,7 @@
                 });
                 const data = await response.json();
 
-                // Adiciona a resposta do bot ao chat
+                // adds bot's response
                 chatBox.innerHTML += `
                     <div class="message bot-message">
                         <div class="message-body">
@@ -71,7 +71,7 @@
                     </div>
                 `;
 
-                // Rola a tela para a última mensagem
+                // scrolls the screen to the last message
                 chatBox.scrollTop = chatBox.scrollHeight;
             } catch (error) {
                 console.error("Erro ao enviar mensagem:", error);
