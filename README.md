@@ -1,4 +1,4 @@
-# Project Description: Simple Intelligent Chatbot with LangChain, Groq, Flask, and HTML+JS
+# Simple Intelligent Chatbot with LangChain, Groq, Flask, and HTML+JS
 
 This project is a simple web application designed for personal learning and understanding, showcasing how to build an intelligent chatbot using modern technologies. The application is built around three core components: **LangChain** for managing language chains, the **Groq** language model for natural language processing (NLP), and a lightweight backend developed with **Flask** to handle requests and responses. The frontend is built using plain **HTML and JavaScript**, ensuring a straightforward and responsive user experience.
 
